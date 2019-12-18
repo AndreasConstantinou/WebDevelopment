@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use App\Post;
+
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -89,7 +90,7 @@ class PostController extends Controller
         $validatedData =$request->validate([
           'post'=> 'required|max:300',
         ]);
-        $input =$request->all();
+
         $post->post=$validatedData['post'];
         $post->user_id=\Auth::user()->id;
         $post->save();

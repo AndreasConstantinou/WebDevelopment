@@ -25,6 +25,12 @@ Route::put('posts/{id}', 'PostController@update')->name('posts.update')->middlew
 
 Route::delete('posts/{id}', 'PostController@destroy')->name('posts.destroy')->middleware('auth');
 
+Route::get('users/createProf', 'ProfileController@create')->name('users.create')->middleware('auth');
+Route::post('users', 'ProfileController@store')->name('users.store')->middleware('auth');
+Route::get('users/{id}', 'ProfileController@show')->name('users.show')->middleware('auth');
+Route::get('users/{id}/edit', 'ProfileController@edit')->name('users.edit')->middleware('auth');
+Route::put('users/{id}', 'ProfileController@update')->name('users.update')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

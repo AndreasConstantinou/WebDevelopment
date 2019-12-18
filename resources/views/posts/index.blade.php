@@ -12,5 +12,7 @@
 
     </ul>
     <a href="{{ route('posts.create' )}}">Create Post</a>
+    <a href="{{ route('users.edit', ['id'=>Auth::user()->profile->id] )}}">Edit your Profile</a>
+
 
 @endsection

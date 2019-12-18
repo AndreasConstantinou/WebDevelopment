@@ -17,6 +17,8 @@
                     You are logged in!
 
                     <p><a href="{{ route('posts.index' )}}">Look at posts</a></p>
+                    <p><a href="{{ route('users.create' )}}">Create a Profile</a></p>
+
 
                 </div>
             </div>

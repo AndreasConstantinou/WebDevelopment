@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
       $user->password="1234";
       $user->save();
 
-      factory(App\User::class, 2)->create();
+      factory(App\User::class, 4)->create();
       //another way to create users with attached relationship to posts for each user
       factory(App\User::class, 3)->create()->each(function ($user) {
         $user->posts()->save(factory(App\Post::class)->make());

@@ -14,10 +14,10 @@ class ProfilesTableSeeder extends Seeder
     {
       $profile=new Profile;
       $profile->jobTitle="Computer Developer";
-      $profile->date_of_birth="1979-06-09";
-      $profile->user_id=1;
+      $profile->phoneNumber="19790609";
+      $profile->user_id=7;
       $profile->save();
 
-      factory(App\Profile::class, 2)->create();
+      factory(App\Profile::class, 7)->create();
     }
 }
