@@ -9,13 +9,14 @@
         <li>Post: {{ $post->user_id }}</li>
         <li>Post: {{ $post->post }}</li>
     </ul>
+    @if (auth::user()->id == $post->user_id )
     <form method="POST"
       action="{{ route('posts.destroy', ['id'=>$post->id ])}}">
       @csrf
       @method('DELETE')
       <button type="submit">Delete</button>
     </form>
-    @if (auth::user()->id == $post->user_id )
+    
     <form method="PATCH"
       action="{{ route('posts.edit', ['id'=>$post->id ])}}">
       <button type="edit">Edit</button>
