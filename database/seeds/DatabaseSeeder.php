@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
       //calling seeders hierarchically
       $this->call(UsersTableSeeder::class);
+      $this->call(ProfilesTableSeeder::class);
       $this->call(PostsTableSeeder::class);
       $this->call(CommentsTableSeeder::class);
     }
