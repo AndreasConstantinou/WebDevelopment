@@ -3,7 +3,7 @@
 @section('title','Posts')
 
 @section('content')
-    <p> Ta post tou GIAKOUMI </p>
+    <p> All the Posts </p>
     <ul>
         @foreach ($posts as $post)
             <li><a href="{{ route('posts.show',['id'=>$post->id]) }}">{{ $post->post}}<a></li>
@@ -11,6 +11,9 @@
         {!! $posts->render() !!}
 
     </ul>
+
+
+
     <form>
     <p><a href="{{ route('posts.create' )}}">Create Post</a></p>
 

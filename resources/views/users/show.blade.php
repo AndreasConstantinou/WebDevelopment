@@ -8,6 +8,9 @@
         <li>User: {{ Auth::user()->name }}</li>
         <li>User-ID: {{ Auth::user()->id }}</li>
         <li>Job Title: {{ $profile->jobTitle ?? 'Unknown'}}</li>
+        <li>PhoneNumber: {{ $profile->phoneNumber ?? 'Unknown'}}</li>
+        <li>Date of birth: {{ $profile->date_of_birth ?? 'Unknown'}}</li>
+
 
     </ul>
 

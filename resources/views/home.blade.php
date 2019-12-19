@@ -13,9 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <p><a href="{{ route('posts.index' )}}">Look at posts</a></p>
+
 
                     You are logged in!
+
+                    @if (! (is_null (Auth::user()->profile)))
+
+                      <p><a href="{{ route('posts.index' )}}">Look at posts </a></p>
+                    @endif
 
                     <p><a href="{{ route('users.create' )}}">Create a Profile</a></p>
 

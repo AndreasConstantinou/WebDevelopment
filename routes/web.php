@@ -31,6 +31,10 @@ Route::get('users/{id}', 'ProfileController@show')->name('users.show')->middlewa
 Route::get('users/{id}/edit', 'ProfileController@edit')->name('users.edit')->middleware('auth');
 Route::put('users/{id}', 'ProfileController@update')->name('users.update')->middleware('auth');
 
+Route::get('ajax', function(){ return view('ajax'); });
+Route::post('/postajax','CommentController@createComment')->name('comment.create');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
