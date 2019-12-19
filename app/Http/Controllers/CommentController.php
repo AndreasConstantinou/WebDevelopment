@@ -9,26 +9,6 @@ use App\Comment;
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-          return view('comments.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,7 +16,6 @@ class CommentController extends Controller
      */
     public function createComment(Request $request)
     {
-
           $comment = new Comment;
 
           $validatedData =$request->validate([
@@ -45,24 +24,14 @@ class CommentController extends Controller
             'comment' => $request->message,
 
           ]);
-
-          //$comment->comment= $validatedData['comment'];
           $comment->comment= $request->message;
           $comment->user_id=\Auth::user()->id;
           $comment->post_id=$request->id;
           $comment->save();
           return response()->json($comment->comment);
 
-
     }
 
-    public function post(Request $request){
-      $response = array(
-          'status' => 'success',
-          'msg' => $request->message,
-      );
-      return response()->json($response);
-   }
 
     /**
      * Display the specified resource.
@@ -84,7 +53,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+          $comment = Comment::findOrFail($id);
+          return view('comments.edit', ['comment'=> $comment]);
     }
 
     /**
@@ -96,7 +66,18 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $comment = Comment::findOrFail($id);
+
+      $validatedData =$request->validate([
+        'comment'=> 'required|max:300',
+      ]);
+      $comment->comment=$validatedData['comment'];
+      $comment->user_id=\Auth::user()->id;
+      $comment->post_id=$comment->post_id;
+      $comment->save();
+
+      session()->flash('message','Post was updated!');
+      return redirect()->route('posts.show',['id'=> $comment->post->id]);
     }
 
     /**
@@ -107,6 +88,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+          $comment = Comment::findOrFail($id);
+          $comment->delete();
+
+          return redirect()->route('posts.show',['id'=> $comment->post->id])->with('message','Comment was deleted!');
     }
 }

@@ -33,6 +33,11 @@ Route::put('users/{id}', 'ProfileController@update')->name('users.update')->midd
 
 Route::get('ajax', function(){ return view('ajax'); });
 Route::post('/postajax','CommentController@createComment')->name('comment.create');
+Route::get('comments/{id}/edit', 'CommentController@edit')->name('comments.edit')->middleware('auth');
+Route::put('comments/{id}', 'CommentController@update')->name('comments.update')->middleware('auth');
+
+
+Route::delete('comments/{id}', 'CommentController@destroy')->name('comments.destroy')->middleware('auth');
 
 
 Auth::routes();

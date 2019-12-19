@@ -5,13 +5,37 @@
 @section('content')
     <p> Posted by {{ $post->user->name }} </p>
     <ul>
-        <li>User: {{ $post->user->name }}</li>
-        <li>User_id: {{ $post->user_id }}</li>
-        <li>Post: {{ $post->post }}</li>
-
+        <li>User {{ $post->user->name }}</li>
+        <li>Posted {{ $post->post }}</li>
+        @if (! (is_null ($post->image)))
         Image:<img src="<?php echo asset("public/storage/$post->image")?>"></img>
+        @endif
 
     </ul>
+    <ul>
+
+      @foreach ( $post->comments as $comment )
+          Commented by {{ $comment->user->name }}
+          <li>Comment: {{ $comment->comment }}</li>
+          <li>By {{ $comment->user->name }}</li>
+          @if (auth::user()->id == $post->user_id )
+          <form method="POST"
+            action="{{ route('comments.destroy', ['id'=>$comment->id ])}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+          </form>
+
+          <form method="PATCH"
+            action="{{ route('comments.edit', ['id'=>$comment->id ])}}">
+            <button type="edit">Edit {{ $comment->id }}</button>
+          </form>
+          @endif
+          <p></p>
+      @endforeach
+
+    </ul>
+
     @if (auth::user()->id == $post->user_id )
     <form method="POST"
       action="{{ route('posts.destroy', ['id'=>$post->id ])}}">
@@ -52,7 +76,8 @@
 
 
    <input class="getinfo"></input>
-   <button class="postbutton">Post via ajax!</button>
+   <button class="postbutton">Create a Comment</button>
+   <label><br> New Comment:  </label>
    <div class="writeinfo"></div>
 
 
