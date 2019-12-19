@@ -28,7 +28,7 @@
 
           <form method="PATCH"
             action="{{ route('comments.edit', ['id'=>$comment->id ])}}">
-            <button type="edit">Edit {{ $comment->id }}</button>
+            <button type="edit">Edit </button>
           </form>
           @endif
           <p></p>
