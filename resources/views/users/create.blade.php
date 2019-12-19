@@ -12,7 +12,7 @@
       <p>phoneNumber: <input type="text" name="phoneNumber"
         value="{{ old('phoneNumber',$phoneNumber->phoneNumber ?? '') }}"></p>
       <input type="submit" value="Submit">
-      <a href="{{ route('users.show',['id'=>Auth::user()->id] )}}">Cancel</a>
+      <a href="{{ route('posts.index' )}}">Cancel</a>
     </form>
 
 

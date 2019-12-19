@@ -11,8 +11,13 @@
         {!! $posts->render() !!}
 
     </ul>
-    <a href="{{ route('posts.create' )}}">Create Post</a>
-    <a href="{{ route('users.edit', ['id'=>Auth::user()->profile->id] )}}">Edit your Profile</a>
+    <form>
+    <p><a href="{{ route('posts.create' )}}">Create Post</a></p>
+
+    </form>
+    <form>
+    <p><a href="{{ route('users.edit', ['id'=>Auth::user()->profile->id] )}}">Edit your Profile</a></p>
+    </form>
 
 
 @endsection
