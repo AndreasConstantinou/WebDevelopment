@@ -3,32 +3,37 @@
 @section('title','Post Detail')
 
 @section('content')
+<div class="container-fluid">
+
+<div class="row">
+  <div class="col-sm-2" > </div>
+  <div class="col-sm-8" >
     <p> Posted by {{ $post->user->name }} </p>
     <ul>
-        <li>User {{ $post->user->name }}</li>
-        <li>Posted {{ $post->post }}</li>
-        @if (! (is_null ($post->image)))
-        Image:<img src="<?php echo asset("public/storage/$post->image")?>"></img>
-        @endif
+        <b>User {{ $post->user->name }}</b>
+        <b>Posted:<br> {{ $post->post }}</b>
 
     </ul>
-    <ul>
+    @if (! (is_null ($post->image)))
+    <img class="img-responsive" src="<?php echo asset("public/storage/$post->image")?>" >
+    @endif
+    <br>
+    <ul class="list-group">
 
       @foreach ( $post->comments as $comment )
-          Commented by {{ $comment->user->name }}
-          <li>Comment: {{ $comment->comment }}</li>
-          <li>By {{ $comment->user->name }}</li>
-          @if (auth::user()->id == $post->user_id )
+          <li class="list-group-item">Comment: {{ $comment->comment }}</li>
+          <li class="list-group-item">By {{ $comment->user->name }}</li>
+          @if (auth::user()->id == $comment->user_id )
           <form method="POST"
             action="{{ route('comments.destroy', ['id'=>$comment->id ])}}">
             @csrf
             @method('DELETE')
-            <button type="submit">Delete</button>
+            <button type="submit" class="btn btn-warning">Delete</button>
           </form>
 
           <form method="PATCH"
             action="{{ route('comments.edit', ['id'=>$comment->id ])}}">
-            <button type="edit">Edit </button>
+            <button type="edit" class="btn btn-primary">Edit </button>
           </form>
           @endif
           <p></p>
@@ -36,20 +41,21 @@
 
     </ul>
 
+<br>
     @if (auth::user()->id == $post->user_id )
     <form method="POST"
       action="{{ route('posts.destroy', ['id'=>$post->id ])}}">
       @csrf
       @method('DELETE')
-      <button type="submit">Delete</button>
+      <button type="submit" class="btn btn-warning">Delete Post</button>
     </form>
-
+<br>
     <form method="PATCH"
       action="{{ route('posts.edit', ['id'=>$post->id ])}}">
-      <button type="edit">Edit</button>
+      <button type="edit" class="btn btn-primary">Edit Post</button>
     </form>
     @endif
-
+<br>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <!-- provide the csrf token -->
    <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -76,14 +82,17 @@
 
 
    <input class="getinfo"></input>
-   <button class="postbutton">Create a Comment</button>
-   <label><br> New Comment:  </label>
-   <div class="writeinfo"></div>
+   <button class="postbutton btn btn-success" >Create a Comment</button>
+   <br><label><b> New Comment: </b> </label>
+    <b><div style="border-style: double" class="writeinfo"></div> </b>
 
 
 
+<br>
+    <button type="button" class="btn btn-primary" ><a href="{{ route('posts.index' )}}"><font color="white">Back</font> </a></button>
 
-    <p><a href="{{ route('posts.index' )}}">Back</a></p>
-
-
+  </div>
+  <div class="col-sm-2"> </div>
+  </div>
+  </div>
 @endsection

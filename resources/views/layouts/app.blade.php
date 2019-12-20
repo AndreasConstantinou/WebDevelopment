@@ -67,23 +67,35 @@
                                 </div>
                             </li>
                         @endguest
-                        @if (session('message'))
-                          <p><b>{{ session('message')}}</b></p>
-                        @endif
-                        @if ($errors->any())
-                          <div>
-                            Errors:
-                            <ul>
-                              @foreach ($errors->all() as $error)
-                                <li>{{$error}}</li>
-                              @endforeach
-                            </ul>
-                          </div>
-                        @endif
+
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-sm-2" > </div>
+          <div class="col-sm-8" >
+<br>
+        @if (session('message'))
+          <p><b>{{ session('message')}}</b></p>
+        @endif
+        @if ($errors->any())
+          <div>
+            Errors:
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
+      </div>
+      <div class="col-sm-2"> </div>
+      </div>
+      </div>
 
         <main class="py-4">
             @yield('content')

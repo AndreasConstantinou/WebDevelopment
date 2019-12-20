@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header"><b>Dashboard</b></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,17 +15,24 @@
                     @endif
 
 
-                    You are logged in!
+                    <b>You are logged in!</b><br><br>
 
                     @if (!(is_null (Auth::user()->profile)))
 
-                      <p><a href="{{ route('posts.index' )}}">Look at posts </a></p>
+
+                      <button type="button" class="btn btn-primary" ><a href="{{ route('posts.index' )}}"><font color="white">Look at posts</font> </a></button>
+                      <br><br>
+
                     @endif
 
-                    <p><a href="{{ route('users.create' )}}">Create a Profile</a></p>
+
+                    <button type="button" class="btn btn-primary" ><a href="{{ route('users.create' )}}"><font color="white">Create a Profile</font> </a></button>
+                    <br><br>
+
 
                     <div id="api">
-                        <button type="button" onclick="loadXML_api()">Show weather API info about Swansea</button>
+                        <button type="button" class="btn btn-primary" onclick="loadXML_api()">Show weather API info about Swansea</button>
+                        <br>
                         <label id="apiResponse"></label>
                     </div>
 

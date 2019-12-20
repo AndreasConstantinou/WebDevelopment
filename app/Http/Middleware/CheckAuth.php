@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use App\Post;
 
 class CheckAuth
 {
@@ -16,10 +17,12 @@ class CheckAuth
      */
     public function handle($request, Closure $next)
     {
-          if (auth::user()->id == $request->id){
+          $post = Post::findOrFail($request->id);
+
+          if (auth::user()->id == $post->user_id){
             return $next($request);
           }else{
-            return response("Nice try");
+            return response("Nice try ");
           }
     }
 }

@@ -22,7 +22,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $posts = \DB::table('posts')->simplePaginate(3);
+        $posts = \DB::table('posts')->paginate(5);
 
         return view('posts.index',['posts'=> $posts]);
     }
