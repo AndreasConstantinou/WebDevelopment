@@ -71,7 +71,7 @@ class PostController extends Controller
         $post->save();
 
         session()->flash('message','Post was created!');
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.show', ['id'=> $post->id]);
       }
 
     /**
@@ -117,7 +117,7 @@ class PostController extends Controller
         $post->save();
 
         session()->flash('message','Post was updated!');
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.show', ['id'=> $post->id]);
 
     }
 
